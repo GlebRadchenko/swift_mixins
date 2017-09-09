@@ -44,12 +44,13 @@ extension MultiInheritable {
     @discardableResult func perform(_ method: MethodContainer) -> AnyObject! {
         
         if responds(to: method.selector) {
-            if method.varArgs.isEmpty {
+            let args = method.varArgs.flatMap { $0.bridge }
+            if args.isEmpty {
                 return perform(method.selector)?.takeRetainedValue()
             } else if method.varArgs.count == 1 {
-                return perform(method.selector, with: method.varArgs.first)?.takeRetainedValue()
+                return perform(method.selector, with: args[0])?.takeRetainedValue()
             } else if method.varArgs.count == 2 {
-                return perform(method.selector, with: method.varArgs[0], with: method.varArgs[1])?.takeUnretainedValue()
+                return perform(method.selector, with: args[0], with: args[1])?.takeUnretainedValue()
             } else {
                 return performVariableArgs(method)
             }
@@ -180,23 +181,25 @@ extension MultiInheritable {
         defer { dlclose(handle) }
         let objc_msgSend_pointer = dlsym(handle, "objc_msgSend")
         
-        switch method.varArgs.count {
+        let args = method.varArgs.flatMap { $0.bridge }
+        
+        switch args.count {
         case 3:
             let funcType = (@convention(c)(_ class: Any?, _ sel: Selector!, A?,A?,A?) -> Unmanaged<AnyObject>!).self
             let objc_msgSend = unsafeBitCast(objc_msgSend_pointer, to: funcType)
-            return objc_msgSend(self, method.selector, method.varArgs[0], method.varArgs[1], method.varArgs[2])?.takeUnretainedValue()
+            return objc_msgSend(self, method.selector, args[0], [1], args[2])?.takeUnretainedValue()
         case 4:
             let funcType = (@convention(c)(_ class: Any?, _ sel: Selector!, A?,A?,A?,A?) -> Unmanaged<AnyObject>!).self
             let objc_msgSend = unsafeBitCast(objc_msgSend_pointer, to: funcType)
-            return objc_msgSend(self, method.selector, method.varArgs[0], method.varArgs[1], method.varArgs[2], method.varArgs[3])?.takeUnretainedValue()
+            return objc_msgSend(self, method.selector, args[0], args[1], args[2], args[3])?.takeUnretainedValue()
         case 5:
             let funcType = (@convention(c)(_ class: Any?, _ sel: Selector!, A?,A?,A?,A?,A?) -> Unmanaged<AnyObject>!).self
             let objc_msgSend = unsafeBitCast(objc_msgSend_pointer, to: funcType)
-            return objc_msgSend(self, method.selector, method.varArgs[0], method.varArgs[1], method.varArgs[2], method.varArgs[3], method.varArgs[4])?.takeUnretainedValue()
+            return objc_msgSend(self, method.selector, args[0], args[1], args[2], args[3], args[4])?.takeUnretainedValue()
         case 5:
             let funcType = (@convention(c)(_ class: Any?, _ sel: Selector!, A?,A?,A?,A?,A?,A?) -> Unmanaged<AnyObject>!).self
             let objc_msgSend = unsafeBitCast(objc_msgSend_pointer, to: funcType)
-            return objc_msgSend(self, method.selector, method.varArgs[0], method.varArgs[1], method.varArgs[2], method.varArgs[3], method.varArgs[4], method.varArgs[5])?.takeUnretainedValue()
+            return objc_msgSend(self, method.selector, args[0], args[1], args[2], args[3], args[4], args[5])?.takeUnretainedValue()
         default:
             debugPrint("Selector: \(method.selector) requires more args, please extend this methos")
             return nil

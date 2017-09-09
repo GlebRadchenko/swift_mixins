@@ -9,7 +9,7 @@
  import Foundation
  
  enum PersonMethods: MethodContainer {
-    var varArgs: [CVarArg] {
+    var varArgs: [ObjcBridgable] {
         switch self {
         case .setName(let newValue):
             return [newValue]
@@ -53,7 +53,7 @@
  }
  
  enum MusicianMethods: MethodContainer {
-    var varArgs: [CVarArg] {
+    var varArgs: [ObjcBridgable] {
         switch self {
         case .setExp(let args):
             return [args]
