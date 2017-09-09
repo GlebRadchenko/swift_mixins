@@ -1,0 +1,274 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F72AFBA51F63534200992681 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72AFBA41F63534200992681 /* main.swift */; };
+		F72AFBAC1F63535D00992681 /* MultiInheritable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72AFBAB1F63535D00992681 /* MultiInheritable.swift */; };
+		F72AFBB01F635E3600992681 /* Assosiation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72AFBAF1F635E3600992681 /* Assosiation.swift */; };
+		F72AFBB41F63776100992681 /* MultiInherited.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72AFBB31F63776100992681 /* MultiInherited.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F72AFB9F1F63534200992681 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		F72AFBA11F63534200992681 /* MultiInheritance */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MultiInheritance; sourceTree = BUILT_PRODUCTS_DIR; };
+		F72AFBA41F63534200992681 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		F72AFBAB1F63535D00992681 /* MultiInheritable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiInheritable.swift; sourceTree = "<group>"; };
+		F72AFBAF1F635E3600992681 /* Assosiation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assosiation.swift; sourceTree = "<group>"; };
+		F72AFBB31F63776100992681 /* MultiInherited.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiInherited.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F72AFB9E1F63534200992681 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F72AFB981F63534200992681 = {
+			isa = PBXGroup;
+			children = (
+				F72AFBA31F63534200992681 /* MultiInheritance */,
+				F72AFBA21F63534200992681 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F72AFBA21F63534200992681 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F72AFBA11F63534200992681 /* MultiInheritance */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F72AFBA31F63534200992681 /* MultiInheritance */ = {
+			isa = PBXGroup;
+			children = (
+				F72AFBA41F63534200992681 /* main.swift */,
+				F72AFBAB1F63535D00992681 /* MultiInheritable.swift */,
+				F72AFBB31F63776100992681 /* MultiInherited.swift */,
+				F72AFBAF1F635E3600992681 /* Assosiation.swift */,
+			);
+			path = MultiInheritance;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F72AFBA01F63534200992681 /* MultiInheritance */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F72AFBA81F63534200992681 /* Build configuration list for PBXNativeTarget "MultiInheritance" */;
+			buildPhases = (
+				F72AFB9D1F63534200992681 /* Sources */,
+				F72AFB9E1F63534200992681 /* Frameworks */,
+				F72AFB9F1F63534200992681 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MultiInheritance;
+			productName = MultiInheritance;
+			productReference = F72AFBA11F63534200992681 /* MultiInheritance */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F72AFB991F63534200992681 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = "Gleb Radchenko";
+				TargetAttributes = {
+					F72AFBA01F63534200992681 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = 76RXYZCS9Y;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = F72AFB9C1F63534200992681 /* Build configuration list for PBXProject "MultiInheritance" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = F72AFB981F63534200992681;
+			productRefGroup = F72AFBA21F63534200992681 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F72AFBA01F63534200992681 /* MultiInheritance */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F72AFB9D1F63534200992681 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F72AFBB01F635E3600992681 /* Assosiation.swift in Sources */,
+				F72AFBA51F63534200992681 /* main.swift in Sources */,
+				F72AFBB41F63776100992681 /* MultiInherited.swift in Sources */,
+				F72AFBAC1F63535D00992681 /* MultiInheritable.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		F72AFBA61F63534200992681 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		F72AFBA71F63534200992681 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		F72AFBA91F63534200992681 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = 76RXYZCS9Y;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		F72AFBAA1F63534200992681 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = 76RXYZCS9Y;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F72AFB9C1F63534200992681 /* Build configuration list for PBXProject "MultiInheritance" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F72AFBA61F63534200992681 /* Debug */,
+				F72AFBA71F63534200992681 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F72AFBA81F63534200992681 /* Build configuration list for PBXNativeTarget "MultiInheritance" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F72AFBA91F63534200992681 /* Debug */,
+				F72AFBAA1F63534200992681 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F72AFB991F63534200992681 /* Project object */;
+}
