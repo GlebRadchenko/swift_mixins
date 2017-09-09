@@ -22,28 +22,26 @@ protocol MultiInheritable: NSObjectProtocol {
     static func mixin(_ otherClass: MultiInherited.Type)
     static func mixin(_ otherClass: AnyClass)
     
-    @discardableResult func perform(_ method: MethodContainer) -> AnyObject?
+    @discardableResult func perform(_ method: MethodContainer) -> AnyObject!
 }
 
 private let allowedContainersAssosiation: ObjectAssosiation<[MethodContainer.Type]> = ObjectAssosiation(policy: .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
 private let runtimeInheritedClassesAssosiation: ObjectAssosiation<[AnyClass]> = ObjectAssosiation(policy: .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
 
 extension MultiInheritable {
-    static var runtimeInheritedClasses: [AnyClass] {
+    fileprivate static var runtimeInheritedClasses: [AnyClass] {
         get { return runtimeInheritedClassesAssosiation[self] ?? [] }
         set { runtimeInheritedClassesAssosiation[self] = newValue }
     }
     
-    static var allowedContainers: [MethodContainer.Type] {
+    fileprivate static var allowedContainers: [MethodContainer.Type] {
         get { return allowedContainersAssosiation[self] ?? [] }
         set { allowedContainersAssosiation[self] = newValue }
     }
 }
 
 extension MultiInheritable {
-    func perform(_ method: MethodContainer) -> AnyObject? {
-        assert(!type(of: self).allowedContainers.contains(where: { $0 == type(of: method) }),
-               "cannot invoke method: \(method.selector)")
+    @discardableResult func perform(_ method: MethodContainer) -> AnyObject! {
         
         if responds(to: method.selector) {
             if method.varArgs.isEmpty {
@@ -63,14 +61,15 @@ extension MultiInheritable {
 
 extension MultiInheritable {
     static func mixin(_ otherClass: MultiInherited.Type) {
-        assert(allowedContainers.contains(where: { $0 == otherClass.containerType }),
+        print("Mixin: ", otherClass)
+        assert(!allowedContainers.contains(where: { $0 == otherClass.containerType }),
                "MultiInheritable object cannot be mixed in with the same class twice")
         allowedContainers.append(otherClass.containerType)
         
         mixin(otherClass as AnyClass)
     }
     
-    static func mixin(_ otherClass: AnyClass!) {
+    fileprivate static func mixin(_ otherClass: AnyClass!) {
         guard let other = otherClass else { return }
         
         mixin(other)
@@ -92,7 +91,7 @@ extension MultiInheritable {
         mixParent(otherClass)
     }
     
-    static func mixMethods(_ cls: AnyClass, _ parentCls: AnyClass) {
+    fileprivate static func mixMethods(_ cls: AnyClass, _ parentCls: AnyClass) {
         var count: UInt32 = 0
         guard var methods = class_copyMethodList(parentCls, &count) else {
             return
@@ -112,12 +111,13 @@ extension MultiInheritable {
         free(cMethods)
     }
     
-    static func mixProperties(_ cls: AnyClass, _ parentCls: AnyClass) {
+    fileprivate static func mixProperties(_ cls: AnyClass, _ parentCls: AnyClass) {
         var count: UInt32 = 0
         
         guard var props = class_copyPropertyList(parentCls, &count) else {
             return
         }
+        
         let cProps = props
         
         (0..<count).forEach { (i) in
@@ -139,7 +139,7 @@ extension MultiInheritable {
         free(cProps)
     }
     
-    static func mixProtocols(_ cls: AnyClass, _ parentCls: AnyClass) {
+    fileprivate static func mixProtocols(_ cls: AnyClass, _ parentCls: AnyClass) {
         var count: UInt32 = 0
         
         guard let protocols = class_copyProtocolList(parentCls, &count) else {
@@ -157,7 +157,7 @@ extension MultiInheritable {
         
     }
     
-    static func mixMetas(_ cls: AnyClass, _ parentCls: AnyClass) {
+    fileprivate static func mixMetas(_ cls: AnyClass, _ parentCls: AnyClass) {
         guard let parentIsa = object_getClass(parentCls), let isa = object_getClass(cls) else {
             return
         }
@@ -167,14 +167,14 @@ extension MultiInheritable {
         mixProtocols(isa, parentIsa)
     }
     
-    static func mixParent(_ cls: AnyClass) {
+    fileprivate static func mixParent(_ cls: AnyClass) {
         mixin(class_getSuperclass(cls))
     }
 }
 
 //Try to find better solution
 extension MultiInheritable {
-    func performVariableArgs(_ method: MethodContainer) -> AnyObject? {
+    fileprivate func performVariableArgs(_ method: MethodContainer) -> AnyObject? {
         typealias A = Any
         let handle: UnsafeMutableRawPointer! = dlopen("/usr/lib/libobjc.A.dylib", RTLD_NOW)
         defer { dlclose(handle) }

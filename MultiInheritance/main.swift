@@ -8,104 +8,116 @@
  
  import Foundation
  
- enum ParentClassMethodList: MethodContainer {
-    var varArgs:  [CVarArg] {
+ enum PersonMethods: MethodContainer {
+    var varArgs: [CVarArg] {
         switch self {
-        case .test:
+        case .setName(let newValue):
+            return [newValue]
+        default:
             return []
-        case .test1(let args):
-            return [args]
-        case .test2(let args):
-            return [args.msg1, args.msg2, args.msg3]
-        case .test3(let args):
-            return [args.msg1, args.msg2, args.msg3, args.msg4]
         }
     }
     
     var selector: Selector {
         switch self {
-        case .test:
-            return #selector(Parent.test0)
-        case .test1:
-            return #selector(Parent.test1(mseg:))
-        case .test2:
-            return #selector(Parent.test2(mseg1:mseg2:mseg3:))
-        case .test3:
-            return #selector(Parent.test3(mseg1:mseg2:mseg3:mseg4:))
+        case .talk:
+            return #selector(Person.talk)
+        case .name:
+            return #selector(getter: Person.name)
+        case .setName:
+            return #selector(setter: Person.name)
         }
     }
     
-    case test
-    case test1(msg: String)
-    case test2(msg1: String, msg2: String, msg3: String)
-    case test3(msg1: String, msg2: String, msg3: String, msg4: String)
+    case talk
+    case name
+    case setName(newValue: String)
  }
  
- class Test: NSObject, MultiInheritable { }
- class Parent2: NSObject {
-    let test3 = "123"
-    let test4: String
-    var tes5: String
+ class Person: NSObject, MultiInherited {
+    static var containerType: MethodContainer.Type = PersonMethods.self
     
-    init(t4: String, t5: String) {
-        self.test4 = t4
-        self.tes5 = t5
-    }
+    var name: String
+    var age: Int
     
-    func test0() {
-        print("6")
-    }
- }
- 
- class God: NSObject {
-    var test1: String!
-    
-    func makeVine() {
-        print("vine created")
-    }
-    
-    func pray() {
-        print("vine created")
-    }
-    
-    static let testStaticVar1: Int = 0
-    static var testStaticVar2: Int = 3
-    
-    static func testStatic() {
+    init(name: String, age: Int) {
+        self.name = name
+        self.age = age
         
+        super.init()
+    }
+    
+    func talk() {
+        print("Person")
     }
  }
  
- class Parent: God {
-    var test2: String = "Lel"
-    
-    override func pray() { }
-    
-    func test0() {
-        print("0")
+ enum MusicianMethods: MethodContainer {
+    var varArgs: [CVarArg] {
+        switch self {
+        case .setExp(let args):
+            return [args]
+        case .incrementBy(let args):
+            return [args]
+        default:
+            return []
+        }
     }
     
-    func test1(mseg: String) {
-        print("1: ", mseg)
+    var selector: Selector {
+        switch self {
+        case .exp:
+            return #selector(getter: Musician.experience)
+        case .setExp:
+            return #selector(setter: Musician.experience)
+        case .play:
+            return #selector(Musician.play)
+        case .incrementBy:
+            return #selector(Musician.incrementExp(by:))
+        }
     }
     
-    func test2(mseg1: String, mseg2: String, mseg3: String) {
-        print("2: ", mseg1 + mseg2 + mseg3)
+    case exp
+    case setExp(newValue: Int)
+    case play
+    case incrementBy(value: Int)
+ }
+ 
+ class Musician: NSObject, MultiInherited {
+    static var containerType: MethodContainer.Type = MusicianMethods.self
+    
+    var experience: Int
+    
+    init(exp: Int) {
+        self.experience = exp
+        super.init()
     }
     
-    func test3(mseg1: String, mseg2: String, mseg3: String, mseg4: String) -> AnyObject {
-        print("3: ", mseg1 + mseg2 + mseg3 + mseg4)
-        return self
+    func play() {
+        print("playing music")
+    }
+    
+    func incrementExp(by value: Int) -> Int {
+        experience += value
+        return experience
     }
  }
  
- Test.self + Parent.self + Parent2.self
+ class Student: NSObject, MultiInheritable {
+    override init() {
+        super.init()
+    }
+ }
  
- let ob: MultiInheritable = Test()
- ob.perform(ParentClassMethodList.test)
- ob.perform(ParentClassMethodList.test1(msg: "m"))
- ob.perform(ParentClassMethodList.test2(msg1: "1", msg2: "2", msg3: "3"))
- let value = ob.perform(ParentClassMethodList.test3(msg1: "1", msg2: "2", msg3: "3", msg4: "4"))
- print(value ?? "No value")
+ //Mixing classes
+ Student.self + Person.self + Musician.self
+ 
+ let student = Student()
+ student.perform(PersonMethods.talk)
+ student.perform(MusicianMethods.play)
+ student.perform(PersonMethods.setName(newValue: "ChangedName"))
+ print(student.perform(PersonMethods.name) ?? "nil")
+ student.perform(MusicianMethods.setExp(newValue: 0))
+ print(student.perform(MusicianMethods.exp) ?? "nil")
  
  RunLoop.main.run()
