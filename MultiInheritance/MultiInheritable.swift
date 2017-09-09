@@ -48,7 +48,7 @@ extension MultiInheritable {
             if args.isEmpty {
                 return perform(method.selector)?.takeRetainedValue()
             } else if method.varArgs.count == 1 {
-                return perform(method.selector, with: args[0])?.takeRetainedValue()
+                return perform(method.selector, with: args[0])?.takeUnretainedValue()
             } else if method.varArgs.count == 2 {
                 return perform(method.selector, with: args[0], with: args[1])?.takeUnretainedValue()
             } else {
@@ -143,12 +143,10 @@ extension MultiInheritable {
     fileprivate static func mixProtocols(_ cls: AnyClass, _ parentCls: AnyClass) {
         var count: UInt32 = 0
         
-        guard let protocols = class_copyProtocolList(parentCls, &count) else {
-            return
-        }
+        var protocols = class_copyProtocolList(parentCls, &count)
         
         (0..<count).forEach { (i) in
-            let prot = protocols[Int(i)]
+            let prot = protocols?[Int(i)]
             let success = class_addProtocol(cls, prot)
             
             if let rawName = protocol_getName(prot) {
@@ -156,6 +154,7 @@ extension MultiInheritable {
             }
         }
         
+        protocols = nil
     }
     
     fileprivate static func mixMetas(_ cls: AnyClass, _ parentCls: AnyClass) {

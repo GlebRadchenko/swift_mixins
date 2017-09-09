@@ -107,17 +107,24 @@
     override init() {
         super.init()
     }
+    
+    func test() {
+        perform(PersonMethods.talk)
+        perform(MusicianMethods.play)
+        perform(PersonMethods.setName(newValue: "ChangedName"))
+        print(perform(PersonMethods.name) ?? "nil")
+        perform(MusicianMethods.setExp(newValue: 6))
+        print(perform(MusicianMethods.exp) ?? "nil")
+    }
  }
  
  //Mixing classes
  Student.self + Person.self + Musician.self
  
  let student = Student()
- student.perform(PersonMethods.talk)
- student.perform(MusicianMethods.play)
- student.perform(PersonMethods.setName(newValue: "ChangedName"))
- print(student.perform(PersonMethods.name) ?? "nil")
- student.perform(MusicianMethods.setExp(newValue: 0))
- print(student.perform(MusicianMethods.exp) ?? "nil")
+ 
+ DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+    student.test()
+ }
  
  RunLoop.main.run()

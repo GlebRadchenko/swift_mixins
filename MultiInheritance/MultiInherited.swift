@@ -19,7 +19,7 @@ extension ObjcBridgable {
 
 extension Int: ObjcBridgable {
     var bridge: Any {
-        return NSNumber(integerLiteral: self)
+        return NSNumber(value: self)
     }
 }
 
