@@ -186,7 +186,7 @@ extension MultiInheritable {
         case 3:
             let funcType = (@convention(c)(_ class: Any?, _ sel: Selector!, A?,A?,A?) -> Unmanaged<AnyObject>!).self
             let objc_msgSend = unsafeBitCast(objc_msgSend_pointer, to: funcType)
-            return objc_msgSend(self, method.selector, args[0], [1], args[2])?.takeUnretainedValue()
+            return objc_msgSend(self, method.selector, args[0], args[1], args[2])?.takeUnretainedValue()
         case 4:
             let funcType = (@convention(c)(_ class: Any?, _ sel: Selector!, A?,A?,A?,A?) -> Unmanaged<AnyObject>!).self
             let objc_msgSend = unsafeBitCast(objc_msgSend_pointer, to: funcType)
